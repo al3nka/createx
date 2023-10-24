@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div>
+      {% if search_term %}
+        <h1>Search results for "{{ search_term }}":</h1>
+      {% else %}
+        <h1>Templates:</h1>
+      {% endif %}
+
+      <form action="{% url 'templates_list' %}" method="get" role="search">
+        <div class="row align-items-center my-4 justify-content-between">
+
+          <div class="col col-auto">
+            <div class="input-group" role="group">
+              {{ search_form.search_query }}
+              <button type="submit" class="btn btn-outline-primary d-flex align-items-center">
+                <span class="material-symbols-outlined">
+                  search
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col col-auto">
+            <a class="btn btn-outline-primary" href="">Go to my templates</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <div class="row g-3" data-masonry='{"percentPosition": true }'>
+        {% for template in object_list %}
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="card shadow-sm">
+              <div class="card-body d-flex flex-column bg-light">
+                <h5 class="card-title">{{ template.name }}</h5>
+                <img class="card-img bg-white" src="{% static 'test_first_page.png' %}" class="mb-auto">
+                {% if template.description %}
+                  <p class="card-text my-2">{{ template.description|truncatewords:15 }}</p>
+                {% else %}
+                  <p class="text-muted">No description provided...</p>
+                {% endif %}
+                <a href="{{ template.get_absolute_url }}" class="btn btn-primary">Open template</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <h4>No templates found</h4>
+        {% endfor %}
+      </div>
+
+      {% include 'components/pagination.html' %}
+    </div>
+  </div>
+
+{% endblock %}

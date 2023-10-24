@@ -1,0 +1,23 @@
+{% load link_tags %}
+
+<div class="pagination mt-3">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+      <a href="{% generate_list_view_link page=1 search=search_term show_user_templates=show_user_templates%}"
+         class="btn btn-outline-secondary btn-sm">&laquo; first</a>
+      <a href="{% generate_list_view_link page=page_obj.previous_page_number search=search_term show_user_templates=show_user_templates%}"
+         class="btn btn-outline-secondary btn-sm">previous</a>
+    {% endif %}
+
+    <span class="current text-muted">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+      <a href="{% generate_list_view_link page=page_obj.next_page_number search=search_query show_user_templates=show_user_templates %}"
+         class="btn btn-outline-secondary btn-sm">next</a>
+      <a href="{% generate_list_view_link page=page_obj.paginator.num_pages search=search_query show_user_templates=show_user_templates%}"
+         class="btn btn-outline-secondary btn-sm">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>

@@ -1,0 +1,37 @@
+#
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__
+src/db.sqlite3
+src/media/
+
+# Backup files
+*.bak
+
+# PyCharm
+.idea/
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Python #
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

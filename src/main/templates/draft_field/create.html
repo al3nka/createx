@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col col-md-12 col-l-10 col-xl-8">
+
+      <h2>Create fields</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        <table>
+          {% for form in formset %}
+            <div class="my-4 p-3 border rounded-3 shadow-sm">
+              <h5 class="mb-3">Field "{{ form.jinja_variable.value }}":</h5>
+              <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}</label>
+                <input type="text" class="form-control" id="{{ form.name.id_for_label }}"
+                       name="{{ form.name.name }}" value="{{ form.jinja_variable.value }}">
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.help_text.id_for_label }}"
+                       class="form-label">{{ form.help_text.label }}</label>
+                <input type="text" class="form-control" id="{{ form.help_text.id_for_label }}"
+                       name="{{ form.help_text.name }}">
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.field_type.id_for_label }}"
+                       class="form-label">{{ form.field_type.label }}</label>
+                <select class="form-control" id="{{ form.field_type.id_for_label }}"
+                        name="{{ form.field_type.name }}">
+                  {% for value, label in form.field_type.field.choices %}
+                    <option value="{{ value }}"
+                            {% if form.field_type.value == value %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.jinja_variable.id_for_label }}"
+                       class="form-label" hidden>{{ form.jinja_variable.label }}</label>
+                <input type="hidden" class="form-control" id="{{ form.jinja_variable.id_for_label }}"
+                       name="{{ form.jinja_variable.name }}" value="{{ form.jinja_variable.value }}">
+              </div>
+            </div>
+          {% endfor %}
+        </table>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

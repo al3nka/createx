@@ -1,0 +1,11 @@
+{% for message in messages %}
+  <div class="alert {{ message.tags }} shadow fade show" role="alert">
+    {{ message | safe }}
+  </div>
+{% endfor %}
+
+{% if form.errors %}
+  <div class="alert alert-danger shadow fade show" role="alert">
+    {{ form.errors }}
+  </div>
+{% endif %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='row py-1'>
+    <div class='col-6'>
+        Username:
+    </div>
+    <div class='col-6'>
+        {{ user }}
+    </div>
+</div>
+
+<div class='row py-1'>
+    <div class='col-6'>
+        Email:
+    </div>
+    <div class='col-6'>
+        {{ user.email }}
+    </div>
+</div>
+
+<!--<div class="pt-2">-->
+<!--    <span>-->
+<!--        <button type="submit" class="btn btn-outline-primary" id="edit" href="{% url 'user_edit' pk=user.id %}">Edit</button>-->
+<!--    </span>-->
+<!--    <span>-->
+<!--        <button type="button" class="btn btn-outline-primary" id="delete" href="{% url 'user_delete' pk=user.id %}">Delete account</button>-->
+<!--    </span>-->
+<!--</div>-->
+
+{% endblock %}

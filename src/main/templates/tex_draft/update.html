@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="col col-md-12 col-l-10 col-xl-8">
+
+      <h2>Edit template: {{ form.name.value }}</h2>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}</label>
+          <input type="text" class="form-control" id="{{ form.name.id_for_label }}" name="{{ form.name.name }}"
+                 value="{{ form.name.value }}">
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
+          <textarea type="{{ form.description.type }}" class="form-control" id="{{ form.description.id_for_label }}"
+                    name="{{ form.description.name }}">{{ form.description.value }}
+            </textarea>
+        </div>
+        <div class="mb-3 form-check">
+          <label class="form-check-label" for="{{ form.is_public.id_for_label }}">{{ form.is_public.label }}</label>
+          <input type="checkbox" class="form-check-input" id="{{ form.is_public.id_for_label }}"
+                 name="{{ form.is_public.name }}" {% if form.is_public.value == True %} checked {% endif %}>
+        </div>
+        <div class="mb-3 form-check">
+          <label class="form-check-label"
+                 for="{{ form.is_restricted.id_for_label }}">{{ form.is_restricted.label }}</label>
+          <input type="checkbox" class="form-check-input" id="{{ form.is_restricted.id_for_label }}"
+                 name="{{ form.is_restricted.name }}" {% if form.is_restricted.value == True %} checked {% endif %}>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary d-inline-flex">
+            <span class="material-symbols-outlined">
+              done
+            </span>
+            Save
+          </button>
+          <a type="button" class="btn btn-danger d-inline-flex align-items-center"
+             href="{% url 'template_delete' pk=template.pk %}">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+            Delete
+          </a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
