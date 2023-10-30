@@ -33,7 +33,7 @@ class TexDraft(models.Model):
 
 class DraftField(models.Model):
     name = models.CharField(max_length=50)
-    help_text = models.CharField(blank=True, null=True)
+    help_text = models.TextField(blank=True, null=True)
     jinja_variable = models.CharField(max_length=255)
     tex_draft = models.ForeignKey(to=TexDraft, on_delete=models.CASCADE, related_name='fields')
     field_type = models.IntegerField(choices=DraftFieldType.choices)

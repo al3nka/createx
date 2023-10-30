@@ -1,7 +1,8 @@
-FROM python:3.12-bookworm
+FROM python:3.11-bookworm
 
 # TinyTeX installation
-RUN apt-get install -y wget perl
+RUN apt update
+RUN apt-get install -y wget perl build-essential python3-dev
 RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh"
 
 # Add TinyTeX binaries to PATH
