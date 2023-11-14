@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 services:
   web:
     build: .
@@ -6,12 +6,13 @@ services:
       - ./src:/usr/src/createx/src
       - web-static:/usr/src/createx/static
       - web-media:/usr/src/createx/src/media
-    expose:
-      - 8000
+    ports:
+      - "8000:8000"
     env_file:
       - ./.env
     depends_on:
       - db
+    command: python manage.py runserver
 
   db:
     image: postgres

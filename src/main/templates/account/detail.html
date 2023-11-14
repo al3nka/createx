@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='row py-1'>
+    <div class='col-6'>
+        Username:
+    </div>
+    <div class='col-6'>
+        {{ user }}
+    </div>
+</div>
+
+<div class='row py-1'>
+    <div class='col-6'>
+        Email:
+    </div>
+    <div class='col-6'>
+        {{ user.email }}
+    </div>
+</div>
+
+{% endblock %}

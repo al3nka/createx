@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse
+from django.template.defaulttags import url
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -24,7 +25,7 @@ class TexDraftListView(LoginRequiredMixin, ListView):
             search_query = search_form.cleaned_data['search_query']
             queryset = queryset.filter(name__icontains=search_query)
 
-        show_user_created = self.request.GET.get('show_user_templates', 'off')
+        show_user_created = self.request.GET.get('show_user_tex_drafts', 'off')
         if show_user_created == 'on':
             queryset = queryset.filter(owner=self.request.user)
         return queryset
@@ -32,13 +33,13 @@ class TexDraftListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('search_query')
-        context['show_user_templates'] = self.request.GET.get('show_user_templates', 'off')
+        context['show_user_tex_drafts'] = self.request.GET.get('show_user_tex_drafts', 'off')
         context['search_form'] = SearchForm(self.request.GET)
         print(context)
         return context
 
 
-class TexDraftDetailView(LoginRequiredMixin, DetailView):
+class TexDraftDetailView(LoginRequiredMixin, OwnerAccessMixin, DetailView):
     model = TexDraft
     template_name = 'tex_draft/detail.html'
     context_object_name = 'tex_draft'
@@ -48,24 +49,26 @@ class TexDraftCreateView(LoginRequiredMixin, CreateView):
     model = TexDraft
     template_name = 'tex_draft/create.html'
     fields = ['name', 'description', 'is_public', 'is_restricted', 'tex_draft_file']
-
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+    success_url = reverse_lazy('tex_draft_list')
 
     def form_valid(self, form):
-        file_contents = form.instance.tex_draft_file.open('r').read()
-        if not text_is_tex_draft(file_contents):
-            messages.warning(request=self.request, message="Template should have at leas one draft_field to fill")
-            return self.form_invalid(form)
+        if form.instance.tex_draft_file:
+            file_contents = form.instance.tex_draft_file.open('r').read()
+            if not text_is_tex_draft(file_contents):
+                messages.warning(request=self.request, message="Tex draft should have at leas one draft_field to fill")
+                return self.form_invalid(form)
+        else:
+            form.instance.tex_draft_file = 'example.tex'
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-    def get_success_url(self):
-        return reverse('fields_create', kwargs={'template_uuid': self.object.uuid})
+    # def get_success_url(self):
+    #     return reverse('fields_create', kwargs={'tex_draft_uuid': self.object.uuid})
 
 
 class TexDraftUpdateView(LoginRequiredMixin, OwnerAccessMixin, UpdateView):
     model = TexDraft
+
     template_name = 'tex_draft/update.html'
     fields = ['name', 'description', 'is_public', 'is_restricted']
 
@@ -75,6 +78,9 @@ class TexDraftUpdateView(LoginRequiredMixin, OwnerAccessMixin, UpdateView):
 
     def get_success_url(self):
         return self.object.get_absolute_url()
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs) | {'tex_draft': self.object}
 
 
 class TexDraftDeleteView(LoginRequiredMixin, OwnerAccessMixin, SuccessMessageMixin, DeleteView):
@@ -86,4 +92,4 @@ class TexDraftDeleteView(LoginRequiredMixin, OwnerAccessMixin, SuccessMessageMix
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('templates_list')
+        return reverse('tex_draft_list')

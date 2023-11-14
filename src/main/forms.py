@@ -6,7 +6,7 @@ class UserCreatedFilterForm(forms.Form):
     show_user_drafts = forms.BooleanField(required=False, initial=False,
                                           widget=forms.CheckboxInput(attrs={'onChange': 'this.form.submit();',
                                                                                'class': 'form-check-input'}),
-                                          label='Show only my template_drafts')
+                                          label='Show only my tex drafts')
 
 
 class SearchForm(forms.Form):

@@ -8,12 +8,12 @@
 
       <div class="my-3">
         <h2>
-          {{ template.name }}
+          {{ tex_draft.name }}
 
           <span class="badge bg-primary fs-6 align-middle">
-            {% if template.is_public %}
+            {% if tex_draft.is_public %}
               Public
-            {% elif template.is_restricted %}
+            {% elif tex_draft.is_restricted %}
               Restricted
             {% else %}
               Private
@@ -23,28 +23,28 @@
       </div>
 
       <div class="my-2">
-        {% if user != template.owner %}
-          <span class="text-muted">Owner: {{ template.owner.username }}</span>
+        {% if user != tex_draft.owner %}
+          <span class="text-muted">Owner: {{ tex_draft.owner.username }}</span>
         {% endif %}
       </div>
 
       <div>
-        <p>{{ template.description }}</p>
+        <p>{{ tex_draft.description }}</p>
       </div>
 
 
       <div class="d-flex justify-content-md-between justify-content-xl-start my-2">
         <a type="button" class="btn btn-primary d-inline-flex align-items-center"
-           href="{% url 'template_fill' pk=template.pk %}">
+           href="{% url 'tex_draft_fill' pk=tex_draft.pk %}">
         <span class="material-symbols-outlined">
           edit_note
         </span>
           Fill the template
         </a>
 
-        {% if user == template.owner %}
+        {% if user == tex_draft.owner %}
           <a type="button" class="btn btn-secondary d-inline-flex align-items-center ms-2"
-             href="{% url 'template_update' pk=template.pk %}">
+             href="{% url 'tex_draft_update' pk=tex_draft.pk %}">
           <span class="material-symbols-outlined">
             edit
           </span>

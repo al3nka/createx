@@ -21,7 +21,8 @@ class TexDraft(models.Model):
     description = models.TextField(blank=True, null=True)
     is_public = models.BooleanField(default=False)  # if True, tex_draft will be displayed to everyone
     is_restricted = models.BooleanField(default=False)  # if True, tex_draft can be accessed by link
-    tex_draft_file = models.FileField(upload_to='tex_drafts')
+    # todo: make this field required
+    tex_draft_file = models.FileField(upload_to='tex_drafts', blank=True, null=True)
     owner = models.ForeignKey(to=user_model, on_delete=models.CASCADE, related_name='tex_drafts')
 
     def __str__(self):
