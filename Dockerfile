@@ -32,4 +32,7 @@ WORKDIR $DJANGO_ROOT
 
 COPY run.sh /usr/local/bin
 
+ARG APP_VERSION="dev"
+ENV APP_VERSION=${APP_VERSION}
+
 CMD ["run.sh"]
