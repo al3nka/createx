@@ -11,7 +11,7 @@ fi
 if [ -z "$DJANGO_SUPERUSER_EMAIL" ]; then
   export DJANGO_SUPERUSER_EMAIL=admin@email.com
 fi
-if [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; then
+if [ "$CREATE_SUPERUSER" == "true" ]; then
   python manage.py createsuperuser --noinput
 fi
 
