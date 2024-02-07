@@ -7,6 +7,11 @@ from django.contrib.auth.models import Group
 user_model = get_user_model()
 
 
+def file_upload_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/<uuid>/<filename>
+    return f"tex_drafts/{instance.uuid}/{filename}"
+
+
 class DraftFieldType(models.IntegerChoices):
     NUMBER = 0, 'Number'
     TEXT = 1, 'Text'
@@ -22,8 +27,9 @@ class TexDraft(models.Model):
     is_public = models.BooleanField(default=False)  # if True, tex_draft will be displayed to everyone
     is_restricted = models.BooleanField(default=False)  # if True, tex_draft can be accessed by link
     # todo: make this field required
-    tex_draft_file = models.FileField(upload_to='tex_drafts', blank=True, null=True)
+    tex_draft_file = models.FileField(upload_to=file_upload_path, blank=True, null=True)
     owner = models.ForeignKey(to=user_model, on_delete=models.CASCADE, related_name='tex_drafts')
+    finalized = models.BooleanField(default=False)
 
     def __str__(self):
         return f'TexDraft: "{self.name}"'
@@ -33,8 +39,8 @@ class TexDraft(models.Model):
 
 
 class DraftField(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=250)
     help_text = models.TextField(blank=True, null=True)
-    jinja_variable = models.CharField(max_length=255)
+    jinja_variable = models.CharField(max_length=500)
     tex_draft = models.ForeignKey(to=TexDraft, on_delete=models.CASCADE, related_name='fields')
     field_type = models.IntegerField(choices=DraftFieldType.choices)
