@@ -3,13 +3,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.template.defaulttags import url
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from main.forms import SearchForm
+from main.forms import SearchForm, DraftFieldFillForm
 from main.jinja_pdf_utils import text_is_tex_draft
 from main.mixins import OwnerAccessMixin
-from main.models import TexDraft
+from main.models import TexDraft, DraftField
 
 
 class TexDraftListView(LoginRequiredMixin, ListView):
@@ -93,3 +93,21 @@ class TexDraftDeleteView(LoginRequiredMixin, OwnerAccessMixin, SuccessMessageMix
 
     def get_success_url(self):
         return reverse('tex_draft_list')
+
+
+class TexDraftFillView(FormView):
+    template_name = 'tex_draft/fill.html'
+    form_class = DraftFieldFillForm
+    @property
+    def tex_draft(self):
+        return TexDraft.objects.get(uuid=self.kwargs['pk'])
+
+    def get_form_kwargs(self):
+        return super().get_form_kwargs() | {
+            'draft_fields': DraftField.objects.filter(tex_draft=self.tex_draft)
+        }
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data() | {
+            'tex_draft_name': self.tex_draft.name
+        }
