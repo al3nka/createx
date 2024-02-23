@@ -1,15 +1,62 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Fill template "<span class="fw-medium">{{ template_name }}</span>"</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="my-2">
-        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
-        {{ field }}
+
+  <div class="row gx-5 gy-4">
+    <div class="col-lg-6">
+      <h1>Fill template "<span class="fw-medium">{{ tex_draft_name }}</span>"</h1>
+      <form id="texDraftForm">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="my-2">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+            {{ field }}
+          </div>
+        {% endfor %}
+      </form>
+      <button id="submitButton" type="submit" value="Generate PDF" class="btn btn-success mt-1">Generate PDF</button>
+    </div>
+
+    <div class="col-lg-6 px-4 d-flex align-items-center justify-content-center">
+      <div id="spinner" class="spinner-border text-primary me-2" role="status" hidden="true">
+        <span class="visually-hidden">Loading...</span>
       </div>
-    {% endfor %}
-    <button type="submit" value="Generate PDF" class="btn btn-success mt-1">Generate PDF</button>
-  </form>
+      <div id="alert" class="alert alert-danger shadow fade show" role="alert" hidden="true">
+        {{ form.errors }}
+      </div>
+      <div id="pdfDisplay" class="fw-bold">
+        <p>PDF will be here</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let pdfDivClass = document.getElementById("pdfDisplay").className
+    $('#submitButton').on('click', function(e) {
+        document.getElementById("pdfDisplay").className = pdfDivClass;
+        document.getElementById("pdfDisplay").innerHTML = "Generating...";
+        document.getElementById("spinner").hidden = false;
+        document.getElementById("alert").hidden = true;
+
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url "pdf_generate" pk=tex_draft_pk%}",
+            data: $('#texDraftForm').serialize(),
+            success: function(data) {
+                document.getElementById("spinner").hidden = true;
+                document.getElementById("pdfDisplay").innerHTML = data;
+                document.getElementById("pdfDisplay").className += " ratio ratio-1x1"
+            },
+            error: function(error) {
+                document.getElementById("spinner").hidden = true;
+                document.getElementById("pdfDisplay").innerHTML = "";
+                document.getElementById("alert").innerHTML = error.responseText;
+                document.getElementById("alert").hidden = false;
+
+            }
+        });
+    });
+  </script>
 {% endblock %}

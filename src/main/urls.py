@@ -2,7 +2,7 @@ from django.urls import path
 from main.views.general import LandingView
 from main.views.account import ProfileDetailView, CustomLoginView
 from main.views.tex_draft import TexDraftListView, TexDraftCreateView, TexDraftDetailView, TexDraftUpdateView, \
-    TexDraftDeleteView, TexDraftFillView
+    TexDraftDeleteView, TexDraftFillView, GetPDFView
 from main.views.draft_field import DraftFieldCreateView
 from django.contrib.auth.views import LogoutView
 
@@ -21,5 +21,7 @@ urlpatterns = [
 
     path('tex_drafts/<str:tex_draft_uuid>/fields/create/', DraftFieldCreateView.as_view(), name='fields_create'),
 
-    path('tex_drafts/<str:pk>/pdf', TexDraftFillView.as_view(), name='tex_draft_fill')
+    path('tex_drafts/<str:pk>/fill', TexDraftFillView.as_view(), name='tex_draft_fill'),
+
+    path('tex_drafts/<str:pk>/pdf', GetPDFView.as_view(), name='pdf_generate'),
 ]

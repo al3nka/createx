@@ -187,3 +187,5 @@ LOGGING = {
     }
 }
 
+TEX_ENGINE_URL = os.environ.get('TEX_ENGINE', 'http://tex_engine:5000/')
+

@@ -6,3 +6,4 @@ uuid>=1.30
 psycopg2-binary>=2.9
 uwsgi~=2.0
 json-log-formatter~=0.5
+requests~=2.31

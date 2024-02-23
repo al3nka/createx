@@ -41,7 +41,6 @@ class BaseTestLoginRequired:
         return client
 
     def test_unauthorized_access(self, client, url):
-        print(url)
         response = client.get(url)
         assert response.status_code == 302
 
@@ -98,8 +97,6 @@ class TestTexDraftDeleteView(BaseTestLoginRequired):
     def test_delete_tex_draft(self, authorized_client, tex_draft, url):
         response = authorized_client.post(url)
         assert response.status_code == 302
-        print(TexDraft.objects.filter(pk=tex_draft.pk))
-        print(url)
         assert not TexDraft.objects.filter(pk=tex_draft.uuid).exists()
 
 

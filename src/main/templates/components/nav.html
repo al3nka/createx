@@ -22,14 +22,15 @@
           {% url 'login' as login_url %}
           {% url 'logout' as logout_url %}
 
-          <li class="nav-item"><a href="{% url 'index' %}"
-                                  class="nav-link text-primary text-center px-3{% if request.path == index_url %} active text-white{% endif %}"
-                                  aria-current="page">Home</a></li>
+          <li class="nav-item">
+            <a href="{% url 'index' %}"
+               class="nav-link text-primary text-center px-3{% if request.path == index_url %} active text-white{% endif %}"
+               aria-current="page">Home</a></li>
+          <li class="nav-item">
+            <a href="{% url 'tex_draft_list' %}"
+               class="nav-link text-primary text-center px-3{% if request.path == tex_draft_list_url %} active text-white{% endif %}">Templates</a>
+          </li>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a href="{% url 'tex_draft_list' %}"
-                 class="nav-link text-primary text-center px-3{% if request.path == tex_draft_list_url %} active text-white{% endif %}">Templates</a>
-            </li>
             <li class="nav-item">
               <a href="{{ profile_url }}"
                  class="nav-link text-primary text-center px-3{% if request.path == profile_url %} active text-white{% endif %}">Profile</a>

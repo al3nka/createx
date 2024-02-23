@@ -12,6 +12,7 @@ services:
       - ./.env
     depends_on:
       - db
+      - tex_engine
     command: run.sh
 
   db:
@@ -32,6 +33,10 @@ services:
     depends_on:
       - web
 
+  tex_engine:
+    build: tex_engine
+    ports:
+      - "5000:5000"
 
 volumes:
   postgres-data:

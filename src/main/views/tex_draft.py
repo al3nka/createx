@@ -1,18 +1,26 @@
+import base64
+
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.template.defaulttags import url
+from django.http import HttpResponseServerError, HttpResponseBadRequest
 from django.urls import reverse, reverse_lazy
+from django.shortcuts import redirect, render
+from django.views import View
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+import requests
+from requests.exceptions import ConnectionError
+
+from createx.settings import TEX_ENGINE_URL
 from main.forms import SearchForm, DraftFieldFillForm
 from main.jinja_pdf_utils import text_is_tex_draft
 from main.mixins import OwnerAccessMixin
 from main.models import TexDraft, DraftField
 
 
-class TexDraftListView(LoginRequiredMixin, ListView):
+class TexDraftListView(ListView):
     model = TexDraft
     paginate_by = 16
     template_name = 'tex_draft/list.html'
@@ -35,11 +43,10 @@ class TexDraftListView(LoginRequiredMixin, ListView):
         context['search_query'] = self.request.GET.get('search_query')
         context['show_user_tex_drafts'] = self.request.GET.get('show_user_tex_drafts', 'off')
         context['search_form'] = SearchForm(self.request.GET)
-        print(context)
         return context
 
 
-class TexDraftDetailView(LoginRequiredMixin, OwnerAccessMixin, DetailView):
+class TexDraftDetailView(DetailView):
     model = TexDraft
     template_name = 'tex_draft/detail.html'
     context_object_name = 'tex_draft'
@@ -55,7 +62,7 @@ class TexDraftCreateView(LoginRequiredMixin, CreateView):
         if form.instance.tex_draft_file:
             file_contents = form.instance.tex_draft_file.open('r').read()
             if not text_is_tex_draft(file_contents):
-                messages.warning(request=self.request, message="Tex draft should have at leas one draft_field to fill")
+                messages.warning(request=self.request, message='Tex draft should have at leas one draft_field to fill')
                 return self.form_invalid(form)
         else:
             form.instance.tex_draft_file = 'example.tex'
@@ -109,5 +116,38 @@ class TexDraftFillView(FormView):
 
     def get_context_data(self, **kwargs):
         return super().get_context_data() | {
-            'tex_draft_name': self.tex_draft.name
+            'tex_draft_name': self.tex_draft.name,
+            'tex_draft_pk': self.tex_draft.pk
         }
+
+
+class GetPDFView(View):
+
+    @property
+    def tex_draft(self):
+        return TexDraft.objects.get(uuid=self.kwargs['pk'])
+
+    def get(self, request, *args, **kwargs):
+        return redirect(reverse_lazy('tex_draft_fill', kwargs={'pk': self.tex_draft.pk}))
+
+    def post(self, request, *args, **kwargs):
+        form_data = request.POST.dict()
+        form_data.pop('csrfmiddlewaretoken')
+        with open(self.tex_draft.tex_draft_file.path, 'r') as tex_draft:
+            tex_draft_data = tex_draft.read()
+        json_data = {
+            'template': tex_draft_data,
+            'variables': form_data
+        }
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/pdf',
+        }
+        try:
+            response = requests.post(TEX_ENGINE_URL, json=json_data, headers=headers)
+        except ConnectionError:
+            return HttpResponseServerError('Sorry! Can\'t access the pdf generating service. Try again later')
+        if response.status_code == 200:
+            base64_pdf_data = base64.b64encode(response.content).decode()
+            return render(self.request, template_name='components/pdf_display.html', context={'pdf_data': base64_pdf_data})
+        return HttpResponseBadRequest(f'An error occurred: {response.json()["message"]}')
