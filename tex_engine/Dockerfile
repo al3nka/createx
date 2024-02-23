@@ -2,10 +2,8 @@ FROM python:3.11-bookworm
 
 RUN apt update
 RUN apt-get install -y wget perl build-essential python3-dev
-RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh"| sh
+RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh"| sh -s - --admin
 RUN apt-get clean
-
-# RUN apt-get update && apt-get install -y perl wget libfontconfig1
 
 
 # Add TinyTeX binaries to PATH
