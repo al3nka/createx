@@ -1,7 +1,7 @@
 FROM python:3.11-bookworm
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
+    apt-get upgrade -y
 RUN apt-get install -y texlive-base texlive-lang-cyrillic
 RUN apt-get clean
 
