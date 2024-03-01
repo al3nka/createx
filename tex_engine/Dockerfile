@@ -1,17 +1,10 @@
 FROM python:3.11-bookworm
 
-RUN apt update
-RUN apt-get install -y wget perl build-essential python3-dev
-RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh"| sh
+RUN apt-get update && \
+    apt-get upgrade -y && \
+RUN apt-get install -y texlive-base texlive-lang-cyrillic
 RUN apt-get clean
 
-
-# Add TinyTeX binaries to PATH
-ENV PATH="/root/.TinyTeX/bin/x86_64-linux/:${PATH}"
-
-# Set environment variables for TinyTeX
-ENV TINYTEX_HOME="/root/.TinyTeX"
-ENV TEXMF_HOME="/root/texmf"
 
 WORKDIR /usr/src/tex-engine
 
