@@ -1,0 +1,35 @@
+createx:
+  replicas: 1
+  imageName: "al3nka/createx"
+  imageTag: "v1.0.0"
+  settings:
+    # A value for DJANGO_SECRET setting. Will be generated randomly if empty
+    djangoSecret:
+    debug: false
+  dnsName: "createx-test.a10na.space"
+  appName: "createx"
+  adminUser:
+    enabled: true
+    # Password will be generated randomly if empty
+    password:
+    # Default value is admin
+    username: admin
+    # Default value is admin@email.com
+    email: admin@email.net
+
+postgresql:
+  auth:
+    username: "postgres"
+    postgresPassword: "postgres"
+  primary:
+    name: "postgres"
+    resources:
+      requests:
+        memory: "128Mi"
+      limits:
+        memory: "256Mi"
+
+tex_engine:
+  replicas: 1
+  imageName: "al3nka/tex_engine"
+  imageTag: "latest"

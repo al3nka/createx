@@ -1,0 +1,28 @@
+---
+# Source: createx/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: createx-deployment
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: createx
+  template:
+    metadata:
+      labels:
+        app: createx
+    spec:
+      containers:
+        - name: createx
+          image: al3nka/createx:v0.3.1
+          envFrom:
+            - secretRef:
+                name: createx-secret
+            - configMapRef:
+                name: createx-config-map
+          ports:
+            - containerPort: 8000
+

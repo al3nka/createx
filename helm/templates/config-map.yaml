@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "configMap.name" . }}
+  namespace: {{ .Release.Namespace }}
+
+data:
+  DB_HOST: "{{ .Release.Name }}-postgresql"
+  CREATE_SUPERUSER: {{ .Values.createx.adminUser.enabled | quote }}
+  DJANGO_SUPERUSER_USERNAME: {{ .Values.createx.adminUser.username | quote }}
+  DJANGO_SUPERUSER_EMAIL: {{ .Values.createx.adminUser.email | quote }}
+  DEBUG: {{ .Values.createx.settings.debug | quote }}
+  POSTGRES_DB: {{ .Values.postgresql.primary.name | quote }}
+  POSTGRES_USER: {{ .Values.postgresql.auth.username | quote }}
+  TEX_ENGINE_URL: {{ include "tex-engine.url" . }}

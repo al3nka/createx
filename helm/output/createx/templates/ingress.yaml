@@ -1,0 +1,25 @@
+---
+# Source: createx/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: createx-ingress
+  namespace: app
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  rules:
+    - host: createx-test.a10na.space
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: createx-service
+                port:
+                  number: 80
+  tls:
+  - hosts:
+    - createx-test.a10na.space
+    secretName: letsencrypt

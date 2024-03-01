@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.createx.appName }}-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  rules:
+    - host: {{ .Values.createx.dnsName }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: {{ include "createx.service.name" . }}
+                port:
+                  number: 80
+  tls:
+  - hosts:
+    - {{ .Values.createx.dnsName }}
+    secretName: letsencrypt

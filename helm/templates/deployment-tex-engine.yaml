@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tex-engine.deployment.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas:  {{ .Values.tex_engine.replicas }}
+  selector:
+    matchLabels:
+      app: "tex-engine"
+  template:
+    metadata:
+      labels:
+        app: "tex-engine"
+    spec:
+      containers:
+        - name: "tex-engine"
+          image: {{ .Values.tex_engine.imageName }}:{{ .Values.tex_engine.imageTag }}
+          ports:
+            - containerPort: {{ include "tex-engine.port" . }}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "300m"

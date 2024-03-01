@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "createx.deployment.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.createx.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.createx.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.createx.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.createx.appName }}
+          image: {{ .Values.createx.imageName }}:{{ .Values.createx.imageTag }}
+          envFrom:
+            - secretRef:
+                name: {{ include "secret.name" . }}
+            - configMapRef:
+                name: {{ include "configMap.name" . }}
+          ports:
+            - containerPort: {{ include "createx.port" . }}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

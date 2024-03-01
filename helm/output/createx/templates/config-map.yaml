@@ -1,0 +1,9 @@
+---
+# Source: createx/templates/config-map.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: createx-config-map
+data:
+  CREATE_SUPERUSER: { { .Values.createx.adminUser.enabled | default false | quote } }
+

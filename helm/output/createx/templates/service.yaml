@@ -1,0 +1,14 @@
+---
+# Source: createx/templates/service-cretex.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: createx-service
+  namespace: app
+spec:
+  selector:
+    app: createx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
