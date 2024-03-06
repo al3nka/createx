@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="pb-4 pt-1">
+    <div class="text-white border rounded border-0 p-4 bg-card-bg-color" style="color: var(--bs-primary);">
+      <div class="row h-100 text-primary m-3">
+        <div class="col-xl-2 col-sm-4 col-12 col-md-3 col-lg-2 p-0">
+          <span class="material-symbols-outlined swing animated" style="font-size: 140px;">
+            account_circle
+          </span>
+        </div>
+        <div class="col align-content-center">
+          <h1 class="display-3 fw-bolder text-primary mb-0">Welcome back,</h1>
+          <h1 class="text-dark-emphasis">{{ user.username }}</h1>
+        </div>
+      </div>
+      <hr style="color: var(--bs-primary);">
+      <div class="row mx-3">
+        <div class="col col-12">
+          <h1 class="fs-5 text-dark-emphasis">Your recent templates:</h1>
+        </div>
+        <div class="col">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a class="link-secondary" href="#">Template one</a></li>
+            <li class="list-inline-item"><a class="link-secondary" href="#">Template two</a></li>
+            <li class="list-inline-item"><a class="link-secondary" href="#">Template three</a></li>
+            <li class="list-inline-item"><a class="link-secondary" href="#">Template four</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pb-4 pt-1 pb-xl-5">
+    <div class="text-white bg-card-bg-color rounded border-0 p-4" style="color: var(--bs-primary);">
+      <div class="row px-3">
+        <div class="col">
+          <h3 class="my-auto text-dark-emphasis">Your templates</h3>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end"><a href="#" style="color: var(--bs-secondary);">See all</a></div>
+      </div>
+      <hr style="color: var(--bs-primary);">
+      <div class="d-flex flex-row overflow-scroll pb-3 g-4">
+        {% for tex_draft in tex_drafts %}
+          <div class="col col-12 col-sm-6 col-md-4 col-xl-3 me-3">
+            {%  include "components/tex_draft_card.html" %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="mt-2"><a class="link-secondary h5" href="#">You also can check out library of templates</a></div>
+    </div>
+  </section>
+{% endblock %}
