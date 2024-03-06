@@ -18,9 +18,18 @@
   8000
 {{- end -}}
 
+{{- define  "createx.pvc.name" -}}
+  {{ .Release.Name }}-pvc
+{{- end -}}
+
+{{- define "tex-engine.labels" -}}
+  app: "tex-engine"
+{{- end -}}
+
 {{- define "tex-engine.deployment.name" -}}
   tex-engine-deployment
 {{- end -}}
+
 {{- define "tex-engine.service.name" -}}
   tex-engine-service
 {{- end -}}

@@ -4,8 +4,7 @@ metadata:
   name: {{ include "tex-engine.service.name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
-  selector:
-    app: {{ .Values.tex_engine.appName }}
+  selector: {{ include "tex-engine.labels" . | nindent 4 }}
   ports:
     - protocol: TCP
       port: {{ include "tex-engine.port" . }}

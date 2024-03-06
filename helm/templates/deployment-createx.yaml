@@ -23,6 +23,9 @@ spec:
                 name: {{ include "configMap.name" . }}
           ports:
             - containerPort: {{ include "createx.port" . }}
+          volumeMounts:
+            - mountPath: "/usr/src/createx/src/media/"
+              name: media-storage
           resources:
             requests:
               memory: "64Mi"
@@ -30,3 +33,7 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
+      volumes:
+        - name: media-storage
+          persistentVolumeClaim:
+            claimName: {{ include "createx.pvc.name" . }}
