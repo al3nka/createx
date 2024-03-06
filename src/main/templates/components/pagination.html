@@ -3,9 +3,9 @@
 <div class="pagination mt-3">
   <span class="step-links">
     {% if page_obj.has_previous %}
-      <a href="{% generate_list_view_link page=1 search=search_term show_user_tex_drafts=show_user_tex_drafts%}"
+      <a href="{% generate_list_view_link page=1 search_query=search_query show_user_tex_drafts=show_user_tex_drafts %}"
          class="btn btn-outline-secondary btn-sm">&laquo; first</a>
-      <a href="{% generate_list_view_link page=page_obj.previous_page_number search=search_term show_user_templates=show_user_templates%}"
+      <a href="{% generate_list_view_link page=page_obj.previous_page_number search_query=search_query show_user_tex_drafts=show_user_tex_drafts %}"
          class="btn btn-outline-secondary btn-sm">previous</a>
     {% endif %}
 
@@ -14,9 +14,9 @@
     </span>
 
     {% if page_obj.has_next %}
-      <a href="{% generate_list_view_link page=page_obj.next_page_number search=search_query show_user_templates=show_user_templates %}"
+      <a href="{% generate_list_view_link page=page_obj.next_page_number search_query=search_query show_user_tex_drafts=show_user_tex_drafts %}"
          class="btn btn-outline-secondary btn-sm">next</a>
-      <a href="{% generate_list_view_link page=page_obj.paginator.num_pages search=search_query show_user_templates=show_user_templates%}"
+      <a href="{% generate_list_view_link page=page_obj.paginator.num_pages search_query=search_query show_user_tex_drafts=show_user_tex_drafts %}"
          class="btn btn-outline-secondary btn-sm">last &raquo;</a>
     {% endif %}
   </span>

@@ -2,6 +2,7 @@ import base64
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
 from django.http import HttpResponseServerError, HttpResponseBadRequest
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
@@ -22,11 +23,11 @@ from main.models import TexDraft, DraftField
 
 class TexDraftListView(ListView):
     model = TexDraft
-    paginate_by = 16
+    paginate_by = 2
     template_name = 'tex_draft/list.html'
 
     def get_queryset(self):
-        queryset = self.model.objects.filter(is_public=True)
+        queryset = self.model.objects.filter(Q(is_public=True) | Q(owner=self.request.user))
 
         search_form = SearchForm(self.request.GET)
         if search_form.is_valid():

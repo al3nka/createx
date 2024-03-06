@@ -5,8 +5,8 @@
 
   <div class="container">
     <div>
-      {% if search_term %}
-        <h1>Search results for "{{ search_term }}":</h1>
+      {% if search_query %}
+        <h1>Search results for "{{ search_query }}":</h1>
       {% else %}
         <h1>Templates:</h1>
       {% endif %}
@@ -26,36 +26,32 @@
           </div>
 
           <div class="col col-auto">
-            <a class="btn btn-outline-primary" href="">Go to my templates</a>
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="showUserTemplates"
+                   name="show_user_tex_drafts"
+                   onChange="this.form.submit()"
+                   {% if show_user_tex_drafts == "on" %}checked{% endif %}>
+            <label class="form-check-label" for="showUserTemplates">
+              Show only my templates
+            </label>
           </div>
         </div>
       </form>
     </div>
 
-    <div>
+    <div class="bg-card-bg-color rounded p-3">
       <div class="row g-3" data-masonry='{"percentPosition": true }'>
         {% for tex_draft in object_list %}
           <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card shadow-sm">
-              <div class="card-body d-flex flex-column bg-light">
-                <h5 class="card-title">{{ tex_draft.name }}</h5>
-                <img class="card-img bg-white" src="{% static 'test_first_page.png' %}" class="mb-auto">
-                {% if tex_draft.description %}
-                  <p class="card-text my-2">{{ tex_draft.description|truncatewords:15 }}</p>
-                {% else %}
-                  <p class="text-muted">No description provided...</p>
-                {% endif %}
-                <a href="{{ tex_draft.get_absolute_url }}" class="btn btn-primary">Open template</a>
-              </div>
-            </div>
+            {% include "components/tex_draft_card.html" %}
           </div>
         {% empty %}
           <h4>No templates found</h4>
         {% endfor %}
       </div>
-
-      {% include 'components/pagination.html' %}
     </div>
+    {% include 'components/pagination.html' %}
   </div>
 
 {% endblock %}
