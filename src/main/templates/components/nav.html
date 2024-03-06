@@ -1,20 +1,21 @@
-<div class="container">
-  <header class="mb-4 border-bottom">
-    <nav class="navbar navbar-expand-md d-flex flex-wrap justify-content-between w-100">
-      <a href="/" class="navbar-brand d-flex align-items-center me-auto link-body-emphasis text-decoration-none">
-        <span class="material-symbols-outlined">
-          draft
+{% load static %}
+<header class="mb-3 fs-5">
+  <nav class="navbar navbar-expand-md bg-body py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
+          <img src="{% static 'img/logo.svg' %}" style="max-height: 30px">
         </span>
-        <span class="fs-4">createx</span>
+        <span>Createx</span>
       </a>
 
-      <button class="navbar-toggler btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
+        <span class="visually-hidden">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav nav-pills ms-2 mt-2 mt-md-0">
+      <div class="collapse navbar-collapse" id="navcol-2">
+        <ul class="navbar-nav ms-auto">
           {% url 'index' as index_url %}
           {% url 'tex_draft_list' as tex_draft_list_url %}
           {% url 'tex_draft_create' as tex_draft_create_url %}
@@ -24,37 +25,45 @@
 
           <li class="nav-item">
             <a href="{% url 'index' %}"
-               class="nav-link text-primary text-center px-3{% if request.path == index_url %} active text-white{% endif %}"
-               aria-current="page">Home</a></li>
+               class="nav-link{% if request.path == index_url %} active text-primary{% endif %}"
+              aria-current="page">
+              Home
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{% url 'tex_draft_list' %}"
-               class="nav-link text-primary text-center px-3{% if request.path == tex_draft_list_url %} active text-white{% endif %}">Templates</a>
+               class="nav-link{% if request.path == tex_draft_list_url %} active text-primary{% endif %}"
+              aria-current="page">
+              Templates
+            </a>
           </li>
+
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a href="{{ profile_url }}"
-                 class="nav-link text-primary text-center px-3{% if request.path == profile_url %} active text-white{% endif %}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ logout_url }}"
-                 class="nav-link text-primary text-center px-3{% if request.path == logout_url %} active text-white{% endif %}">Log
-                Out</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'tex_draft_create' %}"
-                 class="nav-link text-primary d-flex align-items-center justify-content-center px-3{% if request.path == tex_draft_create_url %} active text-white {% endif %}">
-                <span class="material-symbols-outlined">add</span>
-                New Template
-              </a></li>
+            <a href="{{ profile_url }}"
+               class="nav-link{% if request.path == profile_url %} active text-primary{% endif %}"
+              aria-current="page">
+              Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ logout_url }}"
+               class="nav-link{% if request.path == logout_url %} active text-primary{% endif %}"
+              aria-current="page">
+              Log Out
+            </a>
+          </li>
           {% else %}
             <li class="nav-item">
               <a href="{{ login_url }}"
-                 class="nav-link text-primary text-center px-3{% if request.path == login_url %} active text-white{% endif %}">Log
-                In</a>
+                 class="nav-link{% if request.path == login_url %} active text-primary{% endif %}"
+                 aria-current="page">
+                Log In
+              </a>
             </li>
           {% endif %}
         </ul>
       </div>
-    </nav>
-  </header>
-</div>
+    </div>
+  </nav>
+</header>
