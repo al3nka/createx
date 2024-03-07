@@ -8,7 +8,7 @@ user_model = get_user_model()
 
 
 def file_upload_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/<uuid>/<filename>
+    # file will be uploaded to MEDIA_ROOT/tex_drafts/<uuid>/<filename>
     return f"tex_drafts/{instance.uuid}/{filename}"
 
 
@@ -26,10 +26,11 @@ class TexDraft(models.Model):
     description = models.TextField(blank=True, null=True)
     is_public = models.BooleanField(default=False)  # if True, tex_draft will be displayed to everyone
     is_restricted = models.BooleanField(default=False)  # if True, tex_draft can be accessed by link
-    # todo: make this field required
-    tex_draft_file = models.FileField(upload_to=file_upload_path, blank=True, null=True)
+    tex_draft_file = models.FileField(upload_to=file_upload_path)
     owner = models.ForeignKey(to=user_model, on_delete=models.CASCADE, related_name='tex_drafts')
     finalized = models.BooleanField(default=False)
+
+    tex_draft_preview = models.FileField(upload_to=file_upload_path, null=True, blank=True)
 
     def __str__(self):
         return f'TexDraft: "{self.name}"'

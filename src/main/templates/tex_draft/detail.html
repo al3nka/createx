@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 
   <div class="row">
-    <div class="col-md-12 col-lg-5">
+    <div class="col">
+    <div class="bg-card-bg-color p-4 rounded">
 
       <div class="my-3">
         <h2>
@@ -54,12 +54,19 @@
       </div>
 
     </div>
-
-    <div class="col">
-      <div class="ratio ratio-1x1 shadow-sm border">
-        <iframe src="{% static 'test.pdf' %}"></iframe>
-      </div>
     </div>
+
+    {% if tex_draft.tex_draft_preview %}
+      <div class="col-md-12 col-lg-7">
+        <div class="ratio ratio-1x1 shadow-sm border">
+          <iframe src="{{ tex_draft.tex_draft_preview.url }}"></iframe>
+        </div>
+      </div>
+    {% else %}
+      <div class="m-4">
+        <h5>There is no file for preview yet...</h5>
+      </div>
+    {% endif %}
   </div>
 
 
