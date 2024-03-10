@@ -1,13 +1,17 @@
 import base64
+from http.client import HTTPResponse
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.http import HttpResponseServerError, HttpResponseBadRequest
+from django.http import HttpResponseServerError, HttpResponseBadRequest, FileResponse
+from django.middleware.clickjacking import XFrameOptionsMiddleware
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from django.views import View
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.generic import DetailView, ListView
+from django.views.generic.base import ContextMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -152,3 +156,12 @@ class GetPDFView(View):
             base64_pdf_data = base64.b64encode(response.content).decode()
             return render(self.request, template_name='components/pdf_display.html', context={'pdf_data': base64_pdf_data})
         return HttpResponseBadRequest(f'An error occurred: {response.json()["message"]}')
+
+
+class TexDraftPreviewView(View):
+    def get(self, request, *args, **kwargs):
+        return FileResponse(TexDraft.objects.get(pk=self.kwargs['pk']).preview, headers={'X-Frame-Options': 'SAMEORIGIN'})
+
+class TexDraftFirstPageView(View):
+    def get(self, request, *args, **kwargs):
+        return FileResponse(TexDraft.objects.get(pk=self.kwargs['pk']).first_page, headers={'X-Frame-Options': 'SAMEORIGIN'})
