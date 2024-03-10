@@ -1,6 +1,10 @@
 {% load static %}
 <div class="card border border-light-subtle">
-  <img class="card-img-top w-100 d-block border-bottom object-fit-cover" alt="{{ tex_draft.name }}" src="{% static 'test_first_page.png' %}" style="object-position: top;max-height: 150px;">
+  {%  if tex_draft.first_page %}
+    <img class="card-img-top w-100 d-block border-bottom object-fit-cover"
+         alt="{{ tex_draft.name }}" src="{% url 'tex_draft_first_page' pk=tex_draft.pk %}"
+         style="object-position: top;max-height: 150px;">
+  {% endif %}
   <div class="card-body nunito-font">
     <h4 class="card-title">{{ tex_draft.name }}</h4>
     {% if tex_draft.description %}

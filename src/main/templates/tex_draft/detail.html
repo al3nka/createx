@@ -34,7 +34,7 @@
 
 
       <div class="d-flex justify-content-md-between justify-content-xl-start my-2">
-        <a type="button" class="btn btn-primary d-inline-flex align-items-center"
+        <a type="button" class="btn btn-primary d-inline-flex align-items-center text-white"
            href="{% url 'tex_draft_fill' pk=tex_draft.pk %}">
         <span class="material-symbols-outlined">
           edit_note
@@ -43,7 +43,7 @@
         </a>
 
         {% if user == tex_draft.owner %}
-          <a type="button" class="btn btn-secondary d-inline-flex align-items-center ms-2"
+          <a type="button" class="btn btn-secondary d-inline-flex align-items-center ms-2 text-white"
              href="{% url 'tex_draft_update' pk=tex_draft.pk %}">
           <span class="material-symbols-outlined">
             edit
@@ -56,10 +56,11 @@
     </div>
     </div>
 
-    {% if tex_draft.tex_draft_preview %}
+    {% if tex_draft.preview %}
       <div class="col-md-12 col-lg-7">
         <div class="ratio ratio-1x1 shadow-sm border">
-          <iframe src="{{ tex_draft.tex_draft_preview.url }}"></iframe>
+          <embed src="{% url 'tex_draft_preview' pk=tex_draft.pk %}" type="application/pdf"></embed>
+{#          <iframe src="{{ tex_draft.preview.url }}"></iframe>#}
         </div>
       </div>
     {% else %}
