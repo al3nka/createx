@@ -30,7 +30,8 @@ class TexDraft(models.Model):
     owner = models.ForeignKey(to=user_model, on_delete=models.CASCADE, related_name='tex_drafts')
     finalized = models.BooleanField(default=False)
 
-    tex_draft_preview = models.FileField(upload_to=file_upload_path, null=True, blank=True)
+    preview = models.FileField(upload_to=file_upload_path, null=True, blank=True)
+    first_page = models.FileField(upload_to=file_upload_path, null=True, blank=True)
 
     def __str__(self):
         return f'TexDraft: "{self.name}"'
