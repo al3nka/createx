@@ -5,7 +5,7 @@
   <div class="row gx-5 gy-4">
     <div class="col-lg-6">
       <div class="bg-card-bg-color p-4 rounded">
-        <h1>Fill template "<span class="fw-medium">{{ tex_draft_name }}</span>"</h1>
+        <h2>Fill template "<span class="fw-medium">{{ tex_draft_name }}</span>"</h2>
         <form id="texDraftForm">
           {% csrf_token %}
           {% for field in form %}
@@ -15,7 +15,7 @@
             </div>
           {% endfor %}
         </form>
-        <button id="submitButton" type="submit" value="Generate PDF" class="btn btn-success mt-1">Generate PDF</button>
+        <button id="submitButton" type="submit" value="Generate PDF" class="btn btn-success mt-1 text-white">Generate PDF</button>
       </div>
     </div>
 
