@@ -2,7 +2,7 @@ FROM python:3.11-bookworm
 
 ENV APP_HOME=/usr/src/createx
 ENV DJANGO_ROOT=$APP_HOME/src
-ENV STATIC_ROOT=$APP_HOME/static
+ENV STATIC_ROOT=$DJANGO_ROOT/static
 
 RUN mkdir -p $DJANGO_ROOT
 

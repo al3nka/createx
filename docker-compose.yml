@@ -4,7 +4,7 @@ services:
     build: .
     volumes:
       - ./src:/usr/src/createx/src
-      - web-static:/usr/src/createx/static
+      - web-static:/usr/src/createx/src/static
       - web-media:/usr/src/createx/src/media
     ports:
       - "8000:8000"
