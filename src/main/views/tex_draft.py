@@ -1,17 +1,13 @@
 import base64
-from http.client import HTTPResponse
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseServerError, HttpResponseBadRequest, FileResponse
-from django.middleware.clickjacking import XFrameOptionsMiddleware
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
-from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.generic import DetailView, ListView
-from django.views.generic.base import ContextMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -27,7 +23,7 @@ from main.models import TexDraft, DraftField
 
 class TexDraftListView(ListView):
     model = TexDraft
-    paginate_by = 2
+    paginate_by = 16
     template_name = 'tex_draft/list.html'
 
     def get_queryset(self):
@@ -161,6 +157,7 @@ class GetPDFView(View):
 class TexDraftPreviewView(View):
     def get(self, request, *args, **kwargs):
         return FileResponse(TexDraft.objects.get(pk=self.kwargs['pk']).preview, headers={'X-Frame-Options': 'SAMEORIGIN'})
+
 
 class TexDraftFirstPageView(View):
     def get(self, request, *args, **kwargs):
