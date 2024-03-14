@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <div class="card border border-light-subtle">
   {%  if tex_draft.first_page %}
     <img class="card-img-top w-100 d-block border-bottom object-fit-cover"
@@ -10,9 +12,9 @@
     {% if tex_draft.description %}
       <p class="card-text">{{ tex_draft.description|truncatewords:15 }}</p>
     {% else %}
-      <p class="card-text text-muted">No description provided...</p>
+      <p class="card-text text-muted">{% trans "No description provided..." %}</p>
     {% endif %}
-    <a href="{{ tex_draft.get_absolute_url }}" class="btn btn-primary text-white">Open template</a>
+    <a href="{{ tex_draft.get_absolute_url }}" class="btn btn-primary text-white">{%  trans "Open template" %}</a>
   </div>
 </div>
 

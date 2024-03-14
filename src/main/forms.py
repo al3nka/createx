@@ -1,6 +1,8 @@
 from typing import Iterable
 
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
 from main.models import DraftField, DraftFieldType
 from main.fields import DraftTextField, DraftParagraphField, DraftBooleanField, DraftDateField, DraftNumberField
 
@@ -14,7 +16,7 @@ class UserCreatedFilterForm(forms.Form):
 
 class SearchForm(forms.Form):
     search_query = forms.CharField(max_length=100, required=False, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Type some keyword...', 'style': 'min-width: 150px'}),
+        attrs={'class': 'form-control', 'placeholder': _('Type some keyword...'), 'style': 'min-width: 150px'}),
                                    label=None)
 
 

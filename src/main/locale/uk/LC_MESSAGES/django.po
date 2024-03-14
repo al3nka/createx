@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-13 17:05+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: forms.py:19
+msgid "Type some keyword..."
+msgstr "Введіть слово для пошуку..."
+
+#: templates/components/nav.html:32
+msgid "Home"
+msgstr "Головна сторінка"
+
+#: templates/components/nav.html:39 templates/tex_draft/list.html:14
+msgid "Templates"
+msgstr "Шаблони"
+
+#: templates/components/nav.html:48
+msgid "Profile"
+msgstr "Профіль"
+
+#: templates/components/nav.html:55
+msgid "Log Out"
+msgstr "Вийти"
+
+#: templates/components/nav.html:63
+msgid "Log In"
+msgstr "Увійти"
+
+#: templates/components/pagination.html:23
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "Сторінка %(current_page)s з %(total_pages)s"
+
+#: templates/components/tex_draft_card.html:15
+msgid "No description provided..."
+msgstr "Опис відсутній..."
+
+#: templates/components/tex_draft_card.html:17
+msgid "Open template"
+msgstr "Переглянути шаблон"
+
+#: templates/tex_draft/detail.html:16
+msgid "Public"
+msgstr "Публічний"
+
+#: templates/tex_draft/detail.html:18
+msgid "Restricted"
+msgstr "Обмежений доступ"
+
+#: templates/tex_draft/detail.html:20
+msgid "Private"
+msgstr "Приватний"
+
+#: templates/tex_draft/detail.html:29
+#, python-format
+msgid "Owner: %(owner)s"
+msgstr "Власник: %(owner)s"
+
+#: templates/tex_draft/detail.html:44
+msgid "Fill the template"
+msgstr "Заповнити"
+
+#: templates/tex_draft/detail.html:53
+msgid "Edit"
+msgstr "Редагувати"
+
+#: templates/tex_draft/detail.html:70
+msgid "There is no file for preview yet..."
+msgstr "Файлу для попереднього перегляду ще немає..."
+
+#: templates/tex_draft/fill.html:9
+msgid "Fill template"
+msgstr "Заповнення шаблону"
+
+#: templates/tex_draft/fill.html:20
+msgid "Generate PDF"
+msgstr "Згенерувати PDF"
+
+#: templates/tex_draft/fill.html:28 templates/tex_draft/fill.html:31
+msgid "Generating..."
+msgstr "Генерація..."
+
+#: templates/tex_draft/fill.html:38
+msgid "PDF will be here"
+msgstr "Згенерований PDF буде тут"
+
+#: templates/tex_draft/list.html:11
+#, python-format
+msgid "Search results for \"%(search_query)s\":"
+msgstr "Знайдені шаблони для \"%(search_query)s\":"
+
+#: templates/tex_draft/list.html:39
+msgid "Show only my templates"
+msgstr "Показувати лише мої шаблони"
+
+#: templates/tex_draft/list.html:53
+msgid "No templates found"
+msgstr "Не знайдено жодного шаблону"
+
+#: templates/tex_draft/update.html:10
+#, python-format
+msgid "Edit template: %(template_name)s"
+msgstr "Редагування шаблону: %(template_name)s"
+
+#: templates/tex_draft/update.html:44
+msgid "Save"
+msgstr "Зберегти"
+
+#: templates/tex_draft/update.html:51
+msgid "Delete"
+msgstr "Видалити"
+
+#: templates/user_welcome.html:14
+msgid "Welcome back,"
+msgstr "З поверненням,"
+
+#: templates/user_welcome.html:21
+msgid "Your recent templates:"
+msgstr "Ваші останні шаблони:"
+
+#: templates/user_welcome.html:38
+msgid "Your templates"
+msgstr "Ваші шаблони"
+
+#: templates/user_welcome.html:40
+msgid "See all"
+msgstr "Переглянути всі"
+
+#: templates/user_welcome.html:51
+msgid "You also can check out library of templates"
+msgstr "Ви також можете переглянути бібліотеку шаблонів"

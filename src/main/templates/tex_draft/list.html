@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
   <div class="container">
     <div>
       {% if search_query %}
-        <h1>Search results for "{{ search_query }}":</h1>
+        <h1>
+          {% blocktrans %}Search results for "{{ search_query }}":{% endblocktrans %}
+        </h1>
       {% else %}
-        <h1>Templates:</h1>
+        <h1>{% trans "Templates" %}:</h1>
       {% endif %}
 
       <form action="{% url 'tex_draft_list' %}" method="get" role="search">
@@ -33,7 +36,7 @@
                    onChange="this.form.submit()"
                    {% if show_user_tex_drafts == "on" %}checked{% endif %}>
             <label class="form-check-label" for="showUserTemplates">
-              Show only my templates
+              {%  trans "Show only my templates" %}
             </label>
           </div>
         </div>
@@ -47,7 +50,7 @@
             {% include "components/tex_draft_card.html" %}
           </div>
         {% empty %}
-          <h4>No templates found</h4>
+          <h4>{% trans "No templates found" %}</h4>
         {% endfor %}
       </div>
     </div>

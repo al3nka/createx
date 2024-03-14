@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <header class="mb-3 fs-5">
   <nav class="navbar navbar-expand-md bg-body py-3">
     <div class="container">
@@ -14,7 +16,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navcol-2">
+      <div class="collapse navbar-collapse small" id="navcol-2">
         <ul class="navbar-nav ms-auto">
           {% url 'index' as index_url %}
           {% url 'tex_draft_list' as tex_draft_list_url %}
@@ -27,14 +29,14 @@
             <a href="{% url 'index' %}"
                class="nav-link{% if request.path == index_url %} active text-primary{% endif %}"
               aria-current="page">
-              Home
+              {% trans "Home" %}
             </a>
           </li>
           <li class="nav-item">
             <a href="{% url 'tex_draft_list' %}"
                class="nav-link{% if request.path == tex_draft_list_url %} active text-primary{% endif %}"
               aria-current="page">
-              Templates
+              {% trans "Templates" %}
             </a>
           </li>
 
@@ -43,14 +45,14 @@
             <a href="{{ profile_url }}"
                class="nav-link{% if request.path == profile_url %} active text-primary{% endif %}"
               aria-current="page">
-              Profile
+              {% trans "Profile" %}
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ logout_url }}"
                class="nav-link{% if request.path == logout_url %} active text-primary{% endif %}"
               aria-current="page">
-              Log Out
+              {% trans "Log Out" %}
             </a>
           </li>
           {% else %}
@@ -58,7 +60,7 @@
               <a href="{{ login_url }}"
                  class="nav-link{% if request.path == login_url %} active text-primary{% endif %}"
                  aria-current="page">
-                Log In
+                {% trans "Log In" %}
               </a>
             </li>
           {% endif %}

@@ -2,9 +2,11 @@
 
 {% block content %}
 
-  <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete <b>{{ object }}?</b></p>
-    <input type="submit" class="btn btn-danger" value="Confirm">
+  <form method="post" class="d-flex align-content-center">{% csrf_token %}
+    <div class="bg-card-bg-color p-4 rounded">
+      <h6>Are you sure you want to delete <b>{{ object }}?</b></h6>
+      <input type="submit" class="btn btn-danger" value="Confirm">
+    </div>
   </form>
 
 {% endblock %}

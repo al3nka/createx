@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
   <div class="row justify-content-center">
     <div class="col col-md-12 col-l-10 col-xl-8">
       <div class="bg-card-bg-color p-4 rounded">
-        <h2>Edit template: {{ form.name.value }}</h2>
+        <h2>
+          {% blocktrans with template_name=form.name.value %}Edit template: {{ template_name }}{% endblocktrans %}
+        </h2>
 
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -38,14 +41,14 @@
               <span class="material-symbols-outlined">
                 done
               </span>
-              Save
+              {% trans "Save" %}
             </button>
             <a type="button" class="btn btn-danger d-inline-flex align-items-center text-white"
                href="{% url 'tex_draft_delete' pk=tex_draft.pk %}">
               <span class="material-symbols-outlined">
                 delete
               </span>
-              Delete
+              {% trans "Delete" %}
             </a>
           </div>
 

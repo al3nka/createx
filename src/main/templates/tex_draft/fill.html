@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
   <div class="row gx-5 gy-4">
     <div class="col-lg-6">
       <div class="bg-card-bg-color p-4 rounded">
-        <h2>Fill template "<span class="fw-medium">{{ tex_draft_name }}</span>"</h2>
+        <h2>{% trans "Fill template"%} "<span class="fw-medium">{{ tex_draft_name }}</span>"</h2>
         <form id="texDraftForm">
           {% csrf_token %}
           {% for field in form %}
@@ -15,19 +16,26 @@
             </div>
           {% endfor %}
         </form>
-        <button id="submitButton" type="submit" value="Generate PDF" class="btn btn-success mt-1 text-white">Generate PDF</button>
+        <button id="submitButton" type="submit" value="Generate PDF" class="btn btn-success mt-1 text-white">
+          {% trans "Generate PDF"%}
+        </button>
       </div>
     </div>
 
     <div class="col-lg-6 px-4 d-flex align-items-center justify-content-center">
-      <div id="spinner" class="spinner-border text-primary me-2" role="status" hidden="true">
-        <span class="visually-hidden">Loading...</span>
+      <div class="row align-items-center" id="loadingElement" hidden="true">
+        <div id="spinner" class="col spinner-border text-primary me-2" role="status">
+          <span class="visually-hidden">{% trans "Generating..."%}</span>
+        </div>
+        <div class="col fw-bold">
+          {% trans "Generating..." %}
+        </div>
       </div>
       <div id="alert" class="alert alert-danger shadow fade show" role="alert" hidden="true">
         {{ form.errors }}
       </div>
       <div id="pdfDisplay" class="fw-bold">
-        <p>PDF will be here</p>
+        <p>{% trans "PDF will be here"%}</p>
       </div>
     </div>
   </div>
@@ -37,8 +45,7 @@
     let pdfDivClass = document.getElementById("pdfDisplay").className
     $('#submitButton').on('click', function(e) {
         document.getElementById("pdfDisplay").className = pdfDivClass;
-        document.getElementById("pdfDisplay").innerHTML = "Generating...";
-        document.getElementById("spinner").hidden = false;
+        document.getElementById("loadingElement").hidden = false;
         document.getElementById("alert").hidden = true;
 
         e.preventDefault();
@@ -47,12 +54,12 @@
             url: "{% url "pdf_generate" pk=tex_draft_pk%}",
             data: $('#texDraftForm').serialize(),
             success: function(data) {
-                document.getElementById("spinner").hidden = true;
+                document.getElementById("loadingElement").hidden = true;
                 document.getElementById("pdfDisplay").innerHTML = data;
                 document.getElementById("pdfDisplay").className += " ratio ratio-1x1"
             },
             error: function(error) {
-                document.getElementById("spinner").hidden = true;
+                document.getElementById("loadingElement").hidden = true;
                 document.getElementById("pdfDisplay").innerHTML = "";
                 document.getElementById("alert").innerHTML = error.responseText;
                 document.getElementById("alert").hidden = false;

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
@@ -12,11 +13,11 @@
 
           <span class="badge bg-primary fs-6 align-middle">
             {% if tex_draft.is_public %}
-              Public
+              {%  trans "Public" %}
             {% elif tex_draft.is_restricted %}
-              Restricted
+              {%  trans "Restricted" %}
             {% else %}
-              Private
+              {%  trans "Private" %}
             {% endif %}
           </span>
         </h2>
@@ -24,7 +25,8 @@
 
       <div class="my-2">
         {% if user != tex_draft.owner %}
-          <span class="text-muted">Owner: {{ tex_draft.owner.username }}</span>
+          <span class="text-muted">
+            {% blocktrans with owner=tex_draft.owner.username %}Owner: {{ owner }}{% endblocktrans %}</span>
         {% endif %}
       </div>
 
@@ -39,7 +41,7 @@
         <span class="material-symbols-outlined">
           edit_note
         </span>
-          Fill the template
+          {% trans "Fill the template"%}
         </a>
 
         {% if user == tex_draft.owner %}
@@ -48,7 +50,7 @@
           <span class="material-symbols-outlined">
             edit
           </span>
-            Edit
+            {% trans "Edit" %}
           </a>
         {% endif %}
       </div>
@@ -65,7 +67,7 @@
       </div>
     {% else %}
       <div class="m-4">
-        <h5>There is no file for preview yet...</h5>
+        <h5>{% trans "There is no file for preview yet..." %}</h5>
       </div>
     {% endif %}
   </div>
