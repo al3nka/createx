@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from main.views.general import LandingView
 from main.views.account import ProfileDetailView, CustomLoginView
 from main.views.tex_draft import TexDraftListView, TexDraftCreateView, TexDraftDetailView, TexDraftUpdateView, \
@@ -9,6 +9,7 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', LandingView.as_view(), name='index'),
+    path('i18n/', include("django.conf.urls.i18n")),
     path('account/<int:pk>/', ProfileDetailView.as_view(), name='profile'),
     path('account/login/', CustomLoginView.as_view(), name='login'),
     path('account/logout/', LogoutView.as_view(), name='logout'),
