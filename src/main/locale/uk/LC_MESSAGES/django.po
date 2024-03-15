@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 21:44+0100\n"
+"POT-Creation-Date: 2024-03-15 22:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,8 @@ msgstr "Введіть слово для пошуку..."
 #: templates/account/register.html:11
 #, python-format
 msgid "%(users_name)s, start crafting stunning documents with <u>createx</u>!"
-msgstr "%(users_name)s, почніть створювати вражаючі документи з <u>createx</u>!"
+msgstr ""
+"%(users_name)s, почніть створювати вражаючі документи з <u>createx</u>!"
 
 #: templates/account/register.html:13
 msgid "Start crafting stunning documents with <u>createx</u>!"
@@ -155,17 +156,17 @@ msgid "Welcome back,"
 msgstr "З поверненням,"
 
 #: templates/user_welcome.html:21
-msgid "Your recent templates:"
-msgstr "Ваші останні шаблони:"
+msgid "Check some templates:"
+msgstr "Перегляньте шаблони з бібліотеки:"
 
-#: templates/user_welcome.html:38
+#: templates/user_welcome.html:37
 msgid "Your templates"
 msgstr "Ваші шаблони"
 
-#: templates/user_welcome.html:40
+#: templates/user_welcome.html:39
 msgid "See all"
 msgstr "Переглянути всі"
 
-#: templates/user_welcome.html:51
+#: templates/user_welcome.html:50
 msgid "You also can check out library of templates"
 msgstr "Ви також можете переглянути бібліотеку шаблонів"

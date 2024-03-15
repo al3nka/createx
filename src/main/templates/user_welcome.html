@@ -18,14 +18,13 @@
       <hr style="color: var(--bs-primary);">
       <div class="row mx-3">
         <div class="col col-12">
-          <h1 class="fs-5 text-dark-emphasis">{% trans "Your recent templates:" %}</h1>
+          <h1 class="fs-5 text-dark-emphasis">{% trans "Check some templates:" %}</h1>
         </div>
         <div class="col">
           <ul class="list-inline">
-            <li class="list-inline-item"><a class="link-secondary" href="#">Template one</a></li>
-            <li class="list-inline-item"><a class="link-secondary" href="#">Template two</a></li>
-            <li class="list-inline-item"><a class="link-secondary" href="#">Template three</a></li>
-            <li class="list-inline-item"><a class="link-secondary" href="#">Template four</a></li>
+            {% for tex_draft in some_tex_drafts %}
+              <li class="list-inline-item"><a class="link-secondary" href="{{ tex_draft.get_absolute_url }}">{{ tex_draft.name }}</a></li>
+            {% endfor %}
           </ul>
         </div>
       </div>

@@ -11,6 +11,7 @@ class LandingView(TemplateView):
     @property
     def user(self):
         return self.request.user
+
     def get(self, request, *args, **kwargs):
         logger.info('Landing page visited', extra={
             'user': str(request.user),
@@ -29,6 +30,7 @@ class LandingView(TemplateView):
         context = {}
         if self.user.is_authenticated:
             context['tex_drafts'] = self.get_user_tex_drafts()
+            context['some_tex_drafts'] = TexDraft.objects.filter(is_public=True)[:4]
         return super().get_context_data() | context
 
     def get_user_tex_drafts(self):
