@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-13 17:05+0100\n"
+"POT-Creation-Date: 2024-03-15 21:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,27 @@ msgstr ""
 #: forms.py:19
 msgid "Type some keyword..."
 msgstr "Введіть слово для пошуку..."
+
+#: templates/account/register.html:11
+#, python-format
+msgid "%(users_name)s, start crafting stunning documents with <u>createx</u>!"
+msgstr "%(users_name)s, почніть створювати вражаючі документи з <u>createx</u>!"
+
+#: templates/account/register.html:13
+msgid "Start crafting stunning documents with <u>createx</u>!"
+msgstr "Почніть створювати вражаючі документи з <u>createx</u>!"
+
+#: templates/account/register.html:17
+msgid "Glad to Have You Here."
+msgstr "Приємно бачити вас тут."
+
+#: templates/account/register.html:25
+msgid "To create account, please, provide following data:"
+msgstr "Для створення облікового запису, будь ласка, введіть наступні дані"
+
+#: templates/account/register.html:40
+msgid "Sign Up"
+msgstr "Зареєструватися"
 
 #: templates/components/nav.html:32
 msgid "Home"
