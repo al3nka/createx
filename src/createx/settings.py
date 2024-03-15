@@ -195,3 +195,6 @@ LOGGING = {
 }
 
 TEX_ENGINE_URL = os.environ.get('TEX_ENGINE_URL')
+
+
+LANGUAGE_COOKIE_NAME = 'django_language'

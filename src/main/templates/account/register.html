@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="col col-md-12 col-l-10 col-xl-8">
+        <div class="bg-primary rounded-top p-5 text-white">
+        <h2>
+          {% if users_name %}
+            {% blocktrans %}{{ users_name }}, start crafting stunning documents with <u>createx</u>!{% endblocktrans %}
+          {% else %}
+            {% blocktrans %}Start crafting stunning documents with <u>createx</u>!{% endblocktrans %}
+          {% endif %}
+        </h2>
+        <p class="text-muted h5 w-100">
+          {% trans "Glad to Have You Here." %}
+          <br>
+        </p>
+        </div>
+
+        <div class="p-1 bg-dark-subtle"></div>
+
+        <div class="bg-card-bg-color rounded-bottom p-4 px-5">
+        <h4 class="mb-3">{% trans "To create account, please, provide following data:" %}</h4>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="...">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" placeholder="...">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="...">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+          </div>
+          <button type="submit" class="btn btn-primary text-white">{% trans "Sign Up" %}</button>
+        </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}

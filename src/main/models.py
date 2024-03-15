@@ -1,4 +1,7 @@
+import string
 import uuid as uuid
+import random
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
@@ -46,3 +49,16 @@ class DraftField(models.Model):
     jinja_variable = models.CharField(max_length=500)
     tex_draft = models.ForeignKey(to=TexDraft, on_delete=models.CASCADE, related_name='fields')
     field_type = models.IntegerField(choices=DraftFieldType.choices)
+
+
+def generate_random_invitation_code():
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
+
+
+class RegistrationInvitation(models.Model):
+    invitation_code = models.CharField(default=generate_random_invitation_code, max_length=12, unique=True)
+    user_name = models.CharField(blank=True, null=False, max_length=250)
+    user_lang = models.CharField(max_length=2, default='en')
+
+    def get_absolute_url(self):
+        return reverse('registration', kwargs={'invitation_code': str(self.invitation_code)})
