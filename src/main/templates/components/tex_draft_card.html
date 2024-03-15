@@ -7,7 +7,7 @@
          alt="{{ tex_draft.name }}" src="{% url 'tex_draft_first_page' pk=tex_draft.pk %}"
          style="object-position: top;max-height: 150px;">
   {% endif %}
-  <div class="card-body nunito-font">
+  <div class="card-body">
     <h4 class="card-title">{{ tex_draft.name }}</h4>
     {% if tex_draft.description %}
       <p class="card-text">{{ tex_draft.description|truncatewords:15 }}</p>

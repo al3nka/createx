@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseServerError, HttpResponseBadRequest, FileResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import DetailView, ListView
