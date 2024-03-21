@@ -55,6 +55,11 @@ class TexDraftDetailView(DetailView):
     template_name = 'tex_draft/detail.html'
     context_object_name = 'tex_draft'
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            self.get_object().view_tex_draft(self.request.user)
+        return super().get(request, *args, **kwargs)
+
 
 class TexDraftCreateView(LoginRequiredMixin, CreateView):
     model = TexDraft

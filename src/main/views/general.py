@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 import logging
 
-from main.models import TexDraft
+from main.models import TexDraft, UserRecentTexDrafts
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ class LandingView(TemplateView):
         context = {}
         if self.user.is_authenticated:
             context['tex_drafts'] = self.get_user_tex_drafts()
-            context['some_tex_drafts'] = TexDraft.objects.filter(is_public=True)[:4]
+            context['recent_tex_drafts'] = UserRecentTexDrafts.objects.filter(user=self.user)
         return super().get_context_data() | context
 
     def get_user_tex_drafts(self):

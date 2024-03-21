@@ -1,11 +1,13 @@
 import string
 import uuid as uuid
 import random
+from datetime import datetime
 
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.contrib.auth.models import Group
+from django.utils.timezone import now
 
 user_model = get_user_model()
 
@@ -42,6 +44,17 @@ class TexDraft(models.Model):
     def get_absolute_url(self):
         return reverse('tex_draft_detail', kwargs={'pk': str(self.pk)})
 
+    def view_tex_draft(self, user):
+        user_recent_tex_drafts = UserRecentTexDrafts.objects.filter(user=user)
+        try:
+            recent_tex_draft = user_recent_tex_drafts.get(tex_draft=self)
+            recent_tex_draft.date_viewed = now()
+        except UserRecentTexDrafts.DoesNotExist:
+            recent_tex_draft = UserRecentTexDrafts(user=user, tex_draft=self)
+        recent_tex_draft.save()
+        if len(user_recent_tex_drafts) > 5:
+            user_recent_tex_drafts.last().delete()
+
 
 class DraftField(models.Model):
     name = models.CharField(max_length=250)
@@ -62,3 +75,12 @@ class RegistrationInvitation(models.Model):
 
     def get_absolute_url(self):
         return reverse('registration', kwargs={'invitation_code': str(self.invitation_code)})
+
+
+class UserRecentTexDrafts(models.Model):
+    user = models.ForeignKey(to=user_model, on_delete=models.CASCADE, related_name='recent_tex_drafts')
+    tex_draft = models.ForeignKey(to=TexDraft, on_delete=models.CASCADE)
+    date_viewed = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date_viewed']

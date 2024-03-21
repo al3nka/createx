@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 14:48+0100\n"
+"POT-Creation-Date: 2024-03-21 16:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,17 +233,20 @@ msgid "Welcome back,"
 msgstr "З поверненням,"
 
 #: templates/user_welcome.html:21
-msgid "Check some templates:"
-msgstr "Перегляньте шаблони з бібліотеки:"
+msgid "Your recent templates:"
+msgstr "Ваші нещодавні шаблони:"
 
-#: templates/user_welcome.html:37
+#: templates/user_welcome.html:41
 msgid "Your templates"
 msgstr "Ваші шаблони"
 
-#: templates/user_welcome.html:39
+#: templates/user_welcome.html:43
 msgid "See all"
 msgstr "Переглянути всі"
 
-#: templates/user_welcome.html:50
+#: templates/user_welcome.html:54
 msgid "You also can check out library of templates"
 msgstr "Ви також можете переглянути бібліотеку шаблонів"
+
+#~ msgid "Check some templates:"
+#~ msgstr "Перегляньте шаблони з бібліотеки:"
