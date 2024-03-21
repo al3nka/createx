@@ -27,16 +27,19 @@ class TexDraftListView(ListView):
     template_name = 'tex_draft/list.html'
 
     def get_queryset(self):
-        queryset = self.model.objects.filter(Q(is_public=True) | Q(owner=self.request.user))
+        if self.request.user.is_authenticated:
+            queryset = self.model.objects.filter(Q(is_public=True) | Q(owner=self.request.user))
+            show_user_created = self.request.GET.get('show_user_tex_drafts', 'off')
+            if show_user_created == 'on':
+                queryset = queryset.filter(owner=self.request.user)
+        else:
+            queryset = self.model.objects.filter(is_public=True)
 
         search_form = SearchForm(self.request.GET)
         if search_form.is_valid():
             search_query = search_form.cleaned_data['search_query']
             queryset = queryset.filter(name__icontains=search_query)
 
-        show_user_created = self.request.GET.get('show_user_tex_drafts', 'off')
-        if show_user_created == 'on':
-            queryset = queryset.filter(owner=self.request.user)
         return queryset
 
     def get_context_data(self, **kwargs):
