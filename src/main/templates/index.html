@@ -5,38 +5,61 @@
 
 
   <div class="container">
-    <div class="p-5 mb-3 bg-body-tertiary rounded-3 shadow-sm">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Createx</h1>
-        <p class="col-md-8 fs-4">
-          Elevate your document game and craft stunning PDFs effortlessly.
-        </p>
-      </div>
-    </div>
-
-
-    <div class="row g-3 align-items-md-stretch">
-      <div class="col-lg-6">
-        <div class="h-100 p-5 bg-secondary bg-opacity-50 rounded-3 shadow-sm">
-          <h2>Library of Templates</h2>
-          <p>Explore a treasure trove of templates crafted by our vibrant community of users. Whether it's resumes,
-            brochures, or reports, you'll find the perfect template to jumpstart your project.</p>
-          <a class="btn btn-dark" type="button" href="{% url "tex_draft_list" %}">Templates library</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="h-100 p-5 bg-body-secondary rounded-3 shadow-sm">
-          <h2>Custom Templates, Your Way</h2>
-          <span class="text-danger fs-5 align-middle">Unavailable</span>
-          <p>Take control of your document's look by creating your own unique templates. Our user-friendly template
-            editor allows you to design PDFs that match your style, ensuring your documents stand out from the
-            crowd.</p>
-          <a class="btn btn-secondary disabled" type="button" href="{% url "tex_draft_create" %}">Create template</a>
+    <div class="bg-card-bg-color rounded text-center mb-5" style="padding-top: 5rem; padding-bottom: 4rem">
+      <div class="row h-100">
+        <div class="col col-md-10 col-xl-8 text-center d-flex justify-content-center align-items-center mx-auto ">
+          <div>
+          <h1 class="display-6 fw-bold mb-3">
+            Craft Stunning PDF Documents <span class="text-primary">Easily, Anytime, Anywhere</span>
+          </h1>
+          <p class="mb-4 fs-5 mb-5">
+            Explore a treasure trove of templates. Whether it's resumes, brochures, or reports,
+            you'll find the perfect template to jumpstart your project.
+          </p>
+          <button class="btn btn-primary py-2 px-4 fs-5 text-white">Go to templates library</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="mb-4 rounded-3 d-flex justify-content-center">
-      <img src="{% static 'img/index_image.png' %}" class="img-fluid" alt="...">
+
+    <div class="">
+        <div class="row d-flex align-items-center align-items-md-start align-items-xl-center bg-primary-subtle rounded py-5 px-3 px-lg-4 mb-4 me-5">
+          <div class="col col-12 col-md-2 col-sm-3 mb-3 mb-sm-0 d-flex justify-content-center">
+            <div>
+              <img src="{% static 'img/latex_template_icon.png' %}" style="height: 100px;" alt="LaTeX template icon">
+            </div>
+          </div>
+          <div class="col">
+            <h4 class="mb-3 fw-bold">Step 1: Select template you like</h4>
+            <p class="h5 mt-auto">
+              Choose your desired template from our extensive library featuring a diverse range
+              of professionally crafted LaTeX templates for various document types.
+            </p>
+          </div>
+        </div>
+        <div class="row d-flex flex-wrap-reverse align-items-center align-items-md-start align-items-xl-center bg-card-bg-color rounded py-5 px-4 mb-4 ms-5">
+          <div class="col">
+            <h4 class="mb-3 fw-bold">Step 2: Fill the template</h4>
+            <p class="h5">
+              Fill in the form fields with your content, without worrying about formatting or layout - we handle the rest.
+            </p>
+          </div>
+          <div class="col col-12 col-md-2 col-sm-3 mb-3 mb-sm-0 d-flex justify-content-center ms-auto me-1">
+            <img src="{% static 'img/form_icon.png' %}" style="height: 100px;" alt="Form icon">
+          </div>
+        </div>
+        <div class="row d-flex bg-primary-subtle align-items-center align-items-md-start align-items-xl-center rounded py-5 px-3 px-lg-4 me-5">
+          <div class="col col-12 col-md-2 col-sm-3 mb-3 mb-sm-0 d-flex justify-content-center">
+            <img src="{% static 'img/pdf_file_icon.png' %}" style="height: 100px;" alt="PDF file icon">
+          </div>
+          <div class="col">
+            <h4 class="mb-2 fw-bold">Step 3: Download your amazing PDF document</h4>
+            <p class="h5">
+              Get your PDF document instantly. It will be beautifully rendered and ready for sharing, printing,
+              or further use. This will complete your seamless document creation journey.
+            </p>
+          </div>
+        </div>
     </div>
   </div>
 
