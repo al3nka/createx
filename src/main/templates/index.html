@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
 
@@ -10,13 +10,17 @@
         <div class="col col-md-10 col-xl-8 text-center d-flex justify-content-center align-items-center mx-auto ">
           <div>
           <h1 class="display-6 fw-bold mb-3">
+            {% blocktrans %}
             Craft Stunning PDF Documents <span class="text-primary">Easily, Anytime, Anywhere</span>
+            {% endblocktrans %}
           </h1>
           <p class="mb-4 fs-5 mb-5">
-            Explore a treasure trove of templates. Whether it's resumes, brochures, or reports,
-            you'll find the perfect template to jumpstart your project.
+            {% blocktrans %}
+              Discover a wide range of templates. Whether it's resumes, brochures, or reports,
+              you'll find the perfect template.
+            {% endblocktrans %}
           </p>
-          <button class="btn btn-primary py-2 px-4 fs-5 text-white">Go to templates library</button>
+          <a class="btn btn-primary py-2 px-4 fs-5 text-white" href="{% url 'tex_draft_list' %}">{% trans "Go to templates library" %}</a>
           </div>
         </div>
       </div>
@@ -30,18 +34,22 @@
             </div>
           </div>
           <div class="col">
-            <h4 class="mb-3 fw-bold">Step 1: Select template you like</h4>
+            <h4 class="mb-3 fw-bold">{% trans "Step 1: Select template you like" %}</h4>
             <p class="h5 mt-auto">
+              {% blocktrans %}
               Choose your desired template from our extensive library featuring a diverse range
-              of professionally crafted LaTeX templates for various document types.
+              of templates for various document types.
+              {% endblocktrans %}
             </p>
           </div>
         </div>
         <div class="row d-flex flex-wrap-reverse align-items-center align-items-md-start align-items-xl-center bg-card-bg-color rounded py-5 px-4 mb-4 ms-5">
           <div class="col">
-            <h4 class="mb-3 fw-bold">Step 2: Fill the template</h4>
+            <h4 class="mb-3 fw-bold">{% trans "Step 2: Fill the template" %}</h4>
             <p class="h5">
+              {% blocktrans %}
               Fill in the form fields with your content, without worrying about formatting or layout - we handle the rest.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="col col-12 col-md-2 col-sm-3 mb-3 mb-sm-0 d-flex justify-content-center ms-auto me-1">
@@ -53,10 +61,12 @@
             <img src="{% static 'img/pdf_file_icon.png' %}" style="height: 100px;" alt="PDF file icon">
           </div>
           <div class="col">
-            <h4 class="mb-2 fw-bold">Step 3: Download your amazing PDF document</h4>
+            <h4 class="mb-2 fw-bold">{% trans "Step 3: Download your amazing PDF document" %}</h4>
             <p class="h5">
+              {% blocktrans %}
               Get your PDF document instantly. It will be beautifully rendered and ready for sharing, printing,
               or further use. This will complete your seamless document creation journey.
+              {% endblocktrans %}
             </p>
           </div>
         </div>

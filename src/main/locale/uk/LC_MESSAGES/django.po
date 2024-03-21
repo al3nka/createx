@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 22:14+0100\n"
+"POT-Creation-Date: 2024-03-21 14:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,83 @@ msgstr "Опис відсутній..."
 #: templates/components/tex_draft_card.html:17
 msgid "Open template"
 msgstr "Переглянути шаблон"
+
+#: templates/index.html:13
+msgid ""
+"\n"
+"            Craft Stunning PDF Documents <span class=\"text-"
+"primary\">Easily, Anytime, Anywhere</span>\n"
+"            "
+msgstr ""
+"\n"
+"Створюйте чудові PDF-документи <span class=\"text-primary\">легко, будь-де "
+"та будь-коли</span>\n"
+"            "
+
+#: templates/index.html:18
+msgid ""
+"\n"
+"              Discover a wide range of templates. Whether it's resumes, "
+"brochures, or reports,\n"
+"              you'll find the perfect template.\n"
+"            "
+msgstr ""
+"\n"
+"Відкрийте для себе широкий вибір шаблонів. Ви знайдете ідеальний шаблон для "
+"будь-якої нагоди."
+
+#: templates/index.html:23
+msgid "Go to templates library"
+msgstr "Перейти до бібліотеки шаблонів"
+
+#: templates/index.html:37
+msgid "Step 1: Select template you like"
+msgstr "Крок 1: Оберіть шаблон, який вам подобається"
+
+#: templates/index.html:39
+msgid ""
+"\n"
+"              Choose your desired template from our extensive library "
+"featuring a diverse range\n"
+"              of templates for various document types.\n"
+"              "
+msgstr ""
+"\n"
+"Виберіть потрібний шаблон з великої бібліотеки,що містить різноманітні "
+"шаблони для різних типів документів."
+
+#: templates/index.html:48
+msgid "Step 2: Fill the template"
+msgstr "Крок 2: Заповніть шаблон"
+
+#: templates/index.html:50
+msgid ""
+"\n"
+"              Fill in the form fields with your content, without worrying "
+"about formatting or layout - we handle the rest.\n"
+"              "
+msgstr ""
+"\n"
+"Заповніть поля форми бажаним вмістом, не турбуючись про форматування чи "
+"верстку - createx зробить все інше."
+
+#: templates/index.html:64
+msgid "Step 3: Download your amazing PDF document"
+msgstr "Крок 3: Завантажте свій чудовий PDF-документ"
+
+#: templates/index.html:66
+msgid ""
+"\n"
+"              Get your PDF document instantly. It will be beautifully "
+"rendered and ready for sharing, printing,\n"
+"              or further use. This will complete your seamless document "
+"creation journey.\n"
+"              "
+msgstr ""
+"\n"
+"Отримайте свій PDF-документ миттєво. Він буде чудово оформлений і готовий до "
+"поширення, друку або подальшого використання. Це завершить ваш простий "
+"процес створення документів."
 
 #: templates/tex_draft/detail.html:16
 msgid "Public"
