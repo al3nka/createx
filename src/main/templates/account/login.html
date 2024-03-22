@@ -1,23 +1,52 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load i18n %}
 
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col col-sm-12 col-md-8 col-lg-6">
-      <form method="post">
-        {% csrf_token %}
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+  <div class="row justify-content-center h-100">
+    <div class="col col-12 col-sm-10 col-md-8">
+      <div class="bg-primary rounded-top px-5 py-3 text-white text-center">
+        <h2>
+          {% blocktrans %}Sign In{% endblocktrans %}
+        </h2>
+      </div>
 
-        <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="{{ form.username.id_for_label }}" placeholder="Username" name="{{ form.username.name }}">
-          <label for="{{ form.username.id_for_label }}">Username</label>
-        </div>
-        <div class="form-floating mb-2">
-          <input type="password" class="form-control" id="{{ form.password.id_for_label }}" placeholder="Password" name="{{ form.password.name }}">
-          <label for="{{ form.password.id_for_label }}">Password</label>
-        </div>
+      <div class="p-1 bg-dark-subtle"></div>
 
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-      </form>
+      <div class="bg-card-bg-color rounded-bottom p-4 px-5">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="{{ form.username.id_for_label }}"
+                   name="{{ form.username.name }}" placeholder="...">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control" id="{{ form.password.id_for_label }}"
+                   name="{{ form.password.name }}" placeholder="...">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+          </div>
+          <button type="submit" class="btn btn-primary text-white">{% trans "Sign In" %}</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col col-12 col-sm-10 col-md-8" style="margin-top: 6rem">
+      <div class="bg-card-bg-color rounded p-4 px-5 mt-">
+        <h5>{% trans "Don't have an account?" %}</h5>
+        <p class="text-muted">
+          {% blocktrans %}
+            Due to the safety reasons we have invitation-only registration. If you want to use createx,
+            write an email to <a href="mailto:createx@a10na.space">createx@a10na.space</a>.
+          {% endblocktrans %}
+        </p>
+        <p class="text-muted">
+          {% blocktrans %}
+            Or you can deploy createx on your pc, see the source code on
+            <a href="https://github.com/al3nka/createx">GitHub</a>
+          {% endblocktrans %}
+        </p>
+      </div>
     </div>
   </div>
 {% endblock %}

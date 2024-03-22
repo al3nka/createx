@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 16:47+0100\n"
+"POT-Creation-Date: 2024-03-22 14:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,11 +25,44 @@ msgstr ""
 msgid "Type some keyword..."
 msgstr "Введіть слово для пошуку..."
 
+#: templates/account/login.html:10 templates/account/login.html:27
+#, fuzzy
+#| msgid "Sign Up"
+msgid "Sign In"
+msgstr "Зареєструватися"
+
+#: templates/account/login.html:34
+msgid "Don't have an account?"
+msgstr "Не маєте облікового запису?"
+
+#: templates/account/login.html:36
+msgid ""
+"\n"
+"          Due to the safety reasons we have invitation-only registration. If "
+"you want to use createx,\n"
+"          write an email to <a href=\"mailto:createx@a10na."
+"space\">createx@a10na.space</a>.\n"
+"          "
+msgstr "\n"
+"З міркувань безпеки реєстрація можлива лише за запрошеннями. Якщо ви хочете використовувати createx, напишіть листа на адресу "
+"<a href=\"mailto:createx@a10na.space\">createx@a10na.space</a>.\n"
+"         "
+
+#: templates/account/login.html:42
+msgid ""
+"\n"
+"          Or you can deploy createx on your pc, see the source code on <a "
+"href=\"https://github.com/al3nka/createx\">GitHub</a>\n"
+"          "
+msgstr "\n"
+"Або ви можете встановити createx на вашому комп'ютері, вихідний код доступний на "
+"<a href=\"https://github.com/al3nka/createx\">GitHub</a>\n"
+"          "
+
 #: templates/account/register.html:11
 #, python-format
 msgid "%(users_name)s, start crafting stunning documents with <u>createx</u>!"
-msgstr ""
-"%(users_name)s, почніть створювати вражаючі документи з <u>createx</u>!"
+msgstr "%(users_name)s, почніть створювати вражаючі документи з <u>createx</u>!"
 
 #: templates/account/register.html:13
 msgid "Start crafting stunning documents with <u>createx</u>!"
@@ -214,6 +247,22 @@ msgstr "Показувати лише мої шаблони"
 #: templates/tex_draft/list.html:53
 msgid "No templates found"
 msgstr "Не знайдено жодного шаблону"
+
+#: templates/tex_draft/list.html:61
+msgid "Did not find what you were looking for?"
+msgstr "Не знайшли те, що шукали?"
+
+#: templates/tex_draft/list.html:63
+msgid ""
+"\n"
+"          You can request a template. Just write an email to\n"
+"          <a href=\"mailto:createx@a10na.space\">createx@a10na.space</a> and "
+"describe what template you need.\n"
+"          "
+msgstr "\n"
+"Ви можете замовити шаблон. Просто напишіть листа на адресу <a href=\"mailto:createx@a10na.space\">createx@a10na.space</a> "
+"і опишіть, який шаблон вам потрібен."
+"         "
 
 #: templates/tex_draft/update.html:10
 #, python-format
