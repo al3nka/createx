@@ -2,22 +2,25 @@
 
 {% block content %}
 
-<div class='row py-1'>
-    <div class='col-6'>
-        Username:
-    </div>
-    <div class='col-6'>
+  <div class="bg-card-bg-color rounded px-5 py-3">
+    <h4 class="text-primary">Your data</h4>
+    <div class='row py-1'>
+      <div class='col-6'>
+        <h5>Username:</h5>
+      </div>
+      <div class='col-6'>
         {{ user }}
+      </div>
     </div>
-</div>
 
-<div class='row py-1'>
-    <div class='col-6'>
-        Email:
-    </div>
-    <div class='col-6'>
+    <div class='row py-1'>
+      <div class='col-6'>
+        <h5>Email:</h5>
+      </div>
+      <div class='col-6'>
         {{ user.email }}
+      </div>
     </div>
-</div>
+  </div>
 
 {% endblock %}
