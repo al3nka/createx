@@ -28,33 +28,33 @@
           <li class="nav-item">
             <a href="{% url 'index' %}"
                class="nav-link{% if request.path == index_url %} active text-primary{% endif %}"
-              aria-current="page">
+               aria-current="page">
               {% trans "Home" %}
             </a>
           </li>
           <li class="nav-item">
             <a href="{% url 'tex_draft_list' %}"
                class="nav-link{% if request.path == tex_draft_list_url %} active text-primary{% endif %}"
-              aria-current="page">
+               aria-current="page">
               {% trans "Templates" %}
             </a>
           </li>
 
           {% if user.is_authenticated %}
+{#            <li class="nav-item">#}
+{#              <a href="{{ profile_url }}"#}
+{#                 class="nav-link{% if request.path == profile_url %} active text-primary{% endif %}"#}
+{#                 aria-current="page">#}
+{#                {% trans "Profile" %}#}
+{#              </a>#}
+{#            </li>#}
             <li class="nav-item">
-            <a href="{{ profile_url }}"
-               class="nav-link{% if request.path == profile_url %} active text-primary{% endif %}"
-              aria-current="page">
-              {% trans "Profile" %}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ logout_url }}"
-               class="nav-link{% if request.path == logout_url %} active text-primary{% endif %}"
-              aria-current="page">
-              {% trans "Log Out" %}
-            </a>
-          </li>
+              <a href="{{ logout_url }}"
+                 class="nav-link{% if request.path == logout_url %} active text-primary{% endif %}"
+                 aria-current="page">
+                {% trans "Log Out" %}
+              </a>
+            </li>
           {% else %}
             <li class="nav-item">
               <a href="{{ login_url }}"
@@ -74,7 +74,8 @@
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_language_info_list for LANGUAGES as languages %}
                 {% for language in languages %}
-                  <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+                  <option value="{{ language.code }}"
+                          {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
                     {{ language.name_local }}
                   </option>
                 {% endfor %}

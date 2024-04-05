@@ -1,16 +1,17 @@
 from typing import Iterable
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from main.models import DraftField, DraftFieldType
+from main.models import DraftField, DraftFieldType, user_model
 from main.fields import DraftTextField, DraftParagraphField, DraftBooleanField, DraftDateField, DraftNumberField
 
 
 class UserCreatedFilterForm(forms.Form):
     show_user_drafts = forms.BooleanField(required=False, initial=False,
                                           widget=forms.CheckboxInput(attrs={'onChange': 'this.form.submit();',
-                                                                               'class': 'form-check-input'}),
+                                                                            'class': 'form-check-input'}),
                                           label='Show only my tex drafts')
 
 
@@ -41,3 +42,11 @@ class DraftFieldFillForm(forms.Form):
 
         for draft_field in draft_fields:
             self.create_field(draft_field)
+
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = user_model
+        fields = ['username', 'email', 'password1', 'password2']
