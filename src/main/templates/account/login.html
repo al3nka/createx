@@ -18,12 +18,14 @@
           {% csrf_token %}
           <div class="mb-3 form-floating">
             <input type="text" class="form-control" id="{{ form.username.id_for_label }}"
-                   name="{{ form.username.name }}" placeholder="...">
+                   name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:'' }}"
+                   placeholder="...">
             <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
           </div>
           <div class="mb-3 form-floating">
             <input type="password" class="form-control" id="{{ form.password.id_for_label }}"
-                   name="{{ form.password.name }}" placeholder="...">
+                   name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}"
+                   placeholder="...">
             <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
           </div>
           <button type="submit" class="btn btn-primary text-white">{% trans "Sign In" %}</button>
