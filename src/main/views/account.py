@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -10,6 +11,7 @@ from django.views import View
 from django.views.generic import DetailView, RedirectView, CreateView
 
 from createx.settings import LANGUAGE_COOKIE_NAME, LOGOUT_REDIRECT_URL
+from main.forms import UserRegisterForm
 from main.models import user_model, RegistrationInvitation
 
 
@@ -36,9 +38,8 @@ class CustomLogoutView(View):
 
 
 class RegisterView(CreateView):
-    model = user_model
+    form_class = UserRegisterForm
     template_name = 'account/register.html'
-    fields = ['username', 'email', 'password']
     success_url = reverse_lazy('index')
 
     @property
