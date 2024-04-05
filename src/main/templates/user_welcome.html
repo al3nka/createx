@@ -12,13 +12,13 @@
         </div>
         <div class="col align-content-center">
           <h1 class="display-3 fw-bolder text-primary mb-0">{% trans "Welcome back," %}</h1>
-          <h1 class="text-dark-emphasis">{{ user.username }}</h1>
+          <h1 class="text-dark">{{ user.username }}</h1>
         </div>
       </div>
       <hr style="color: var(--bs-primary);">
       <div class="row mx-3">
         <div class="col col-12">
-          <h1 class="fs-5 text-dark-emphasis">{% trans "Your recent templates:" %}</h1>
+          <h1 class="fs-5 text-dark">{% trans "Your recent templates:" %}</h1>
         </div>
         <div class="col">
           <ul class="list-inline">
@@ -35,10 +35,10 @@
     </div>
   </section>
   <section class="pb-4 pt-1 pb-xl-5">
-    <div class="text-white bg-card-bg-color rounded border-0 p-4" style="color: var(--bs-primary);">
+    <div class="bg-card-bg-color rounded border-0 p-4" style="color: var(--bs-primary);">
       <div class="row px-3">
         <div class="col">
-          <h3 class="my-auto text-dark-emphasis">{% trans "Your templates" %}</h3>
+          <h3 class="my-auto text-dark">{% trans "Your templates" %}</h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end"><a href="#" style="color: var(--bs-secondary);">{% trans "See all" %}</a></div>
       </div>
@@ -51,7 +51,7 @@
         {% endfor %}
       </div>
       <div class="mt-2">
-        <a class="link-secondary h5" href="#">{% trans "You also can check out library of templates" %}</a>
+        <a class="link-secondary h5" href="{% url 'tex_draft_list' %}">{% trans "You also can check out library of templates" %}</a>
       </div>
     </div>
   </section>
