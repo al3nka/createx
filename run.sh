@@ -10,4 +10,5 @@ if [ "$CREATE_SUPERUSER" == "true" ]; then
 fi
 
 python manage.py collectstatic --clear --noinput
+cp -r ../static/admin static/
 uwsgi --ini uwsgi.ini
